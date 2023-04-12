@@ -1,0 +1,51 @@
+.admin-table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  .header-table,
+  .row-table {
+    display: flex;
+  }
+
+  .header-table {
+    border-bottom: 3px solid black;
+    font-family: $font-1;
+    padding: 0;
+    font-size: 1.2rem;
+  }
+
+  .row-table {
+    border-bottom: 1px dashed black;
+
+    input {
+      text-align: center;
+      border-radius: 5px;
+      border: none;
+      padding: 5px;
+      margin: 0;
+    }
+  }
+
+  li {
+    padding: 5px;
+  }
+
+  li:nth-child(1) {
+    flex: 3;
+  }
+
+  li:nth-child(2),
+  li:nth-child(3) {
+    flex: 2;
+  }
+  li:nth-child(4) {
+    flex: 1;
+  }
+}

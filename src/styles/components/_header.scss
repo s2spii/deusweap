@@ -1,0 +1,23 @@
+.header {
+  background-color: $purple;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30px;
+  padding: 10px;
+  border-radius: 10px;
+
+  font-size: 1.2rem;
+  font-family: $font-2;
+  font-weight: bold;
+
+  a {
+    i {
+      transition: 0.2s;
+    }
+
+    &:hover i {
+      transform: translateX(-3px);
+    }
+  }
+}

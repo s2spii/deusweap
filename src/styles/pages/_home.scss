@@ -1,0 +1,45 @@
+.home {
+  display: flex;
+  gap: 10px;
+
+  #homeText {
+    background-color: $purple;
+    margin: 10px 10px 10px 30px;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-size: 1.2rem;
+  }
+  .best-seller {
+    background-color: $purple;
+    margin: 10px 30px 10px 10px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+
+    * {
+      margin: 10px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: $font-1;
+    }
+    img {
+      width: 300px;
+      transform: rotateZ(-20deg);
+    }
+    a {
+      background-color: $deep-purple;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: $white;
+      font-family: $font-2;
+      transition: 0.3s;
+
+      &:hover {
+        box-shadow: 0 0 6px rgb(255, 255, 255);
+      }
+    }
+  }
+}
