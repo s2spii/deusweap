@@ -2,7 +2,8 @@
   display: flex;
   gap: 10px;
 
-  #homeText {
+  #homeText,
+  #homeTextV {
     background-color: $purple;
     margin: 16px 10px 1em 30px;
     padding: 20px;
@@ -42,4 +43,11 @@
       }
     }
   }
+}
+
+.desc-group {
+  background-color: $purple;
+  display: flex;
+  border-radius: 10px;
+  margin: 30px;
 }

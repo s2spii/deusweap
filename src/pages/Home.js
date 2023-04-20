@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import ShowText from "../components/ShowText";
 import { NavLink } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
+import ShowTextV from "../components/ShowTextV2";
 
 const Home = () => {
   const rightToLeft = useSpring({
@@ -25,6 +26,10 @@ const Home = () => {
           <NavLink to="/produits">Voir plus</NavLink>
         </animated.div>
       </div>
+      <section className="desc-group home">
+        <img src="/assets/weapon.png" alt="Logo Mafia Gallia" width={300} />
+        <ShowTextV />
+      </section>
     </div>
   );
 };

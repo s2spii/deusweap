@@ -95,6 +95,19 @@ a {
   border-radius: 10px;
 }
 
+.select-theme {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  background-color: darkblue;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: white;
+}
+
 @keyframes colorToGreen {
   0% {
     background-color: green;
