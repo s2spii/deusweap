@@ -1,22 +1,30 @@
-import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteProduct, editProduct } from "../../actions/product.action";
 
 const ProductAdmin = ({ data }) => {
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState(data.name);
   const [buyPrice, setBuyPrice] = useState(data.buy_price);
   const [sellPrice, setSellPrice] = useState(data.sell_price);
+  const [url_path, setUrl_path] = useState(data.img_path);
 
-  const editProduct = (id) => {
-    axios.post("http://localhost:5000/product/edit/" + id, {
+  const dispatch = useDispatch();
+
+  const handleEdit = (id) => {
+    const editedData = {
       name,
       buy_price: buyPrice,
-    });
+      sell_price: sellPrice,
+      _id: id,
+      img_path: url_path,
+      categories: data.categories,
+    };
+
+    dispatch(editProduct(editedData));
   };
 
-  const deleteProduct = (id) => {
-    axios.delete("http://localhost:5000/product/delete/" + id);
-  };
+  const img_reduced = data.img_path.slice(0, 10) + "...";
 
   if (edit) {
     return (
@@ -42,6 +50,13 @@ const ProductAdmin = ({ data }) => {
             onChange={(e) => setSellPrice(e.target.value)}
           />
         </li>
+        <li>
+          <input
+            type="text"
+            value={url_path}
+            onChange={(e) => setUrl_path(e.target.value)}
+          />
+        </li>
 
         <li>
           <i
@@ -49,7 +64,7 @@ const ProductAdmin = ({ data }) => {
             style={{ marginRight: "10px" }}
             onClick={() => {
               setEdit(false);
-              editProduct(data._id);
+              handleEdit(data._id);
             }}
           ></i>
 
@@ -66,7 +81,8 @@ const ProductAdmin = ({ data }) => {
       <div className="row-table">
         <li>{name}</li>
         <li>{buyPrice.toLocaleString()}$</li>
-        <li>{data.sell_price.toLocaleString()}$</li>
+        <li>{sellPrice.toLocaleString()}$</li>
+        <li>{img_reduced}</li>
         <li>
           <i
             className="fa-solid fa-pen hover"
@@ -77,7 +93,7 @@ const ProductAdmin = ({ data }) => {
           <i
             className="fa-solid fa-trash hover"
             style={{ marginLeft: "10px" }}
-            onClick={() => deleteProduct(data._id)}
+            onClick={() => dispatch(deleteProduct(data._id))}
           ></i>
         </li>
       </div>

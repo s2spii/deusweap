@@ -1,41 +1,59 @@
 import { Button, Input, Spacer } from "@nextui-org/react";
 import React, { useState } from "react";
+import { deleteGroup, editGroups } from "../../actions/group.action";
 import { useDispatch } from "react-redux";
-import { addGroup } from "../../actions/group.action";
 
-const NewGroup = ({ visible }) => {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [grade, setGrade] = useState("");
+const EditGroup = ({ id, name, pass, grade, visible }) => {
+  const [editName, setEditName] = useState(name);
+  const [editPassword, setEditPassword] = useState(pass);
+  const [editGrade, setEditGrade] = useState(grade);
   const dispatch = useDispatch();
 
   const handleForm = (event) => {
     event.preventDefault();
 
     dispatch(
-      addGroup({
-        name,
-        pass: password,
-        grade,
-      })
+      editGroups(
+        { name: editName, password: editPassword, grade: editGrade },
+        id
+      )
     );
-    visible(false);
-    alert("Groupe ajouté avec succès");
+
+    visible({
+      id: "",
+      name: "",
+      password: "",
+      grade: "",
+      state: false,
+    });
+    alert("Groupe modifié avec succès");
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteGroup(id));
+    visible({
+      id: "",
+      name: "",
+      password: "",
+      grade: "",
+      state: false,
+    });
+    alert("Groupe supprimé avec succès");
   };
 
   return (
     <div className="group">
       <form action="" className="new-form" onSubmit={handleForm}>
-        <h2>Nouveau groupe</h2>
+        <h2>{name}</h2>
         <Spacer y={0.5} />
         <Input
           required={true}
           labelLeft="Nom du groupe"
           underlined
           color="primary"
-          value={name}
+          value={editName}
           onChange={(e) => {
-            setName(e.target.value);
+            setEditName(e.target.value);
           }}
         />
 
@@ -44,9 +62,9 @@ const NewGroup = ({ visible }) => {
           labelLeft="Mot de passe"
           underlined
           color="primary"
-          value={password}
+          value={editPassword}
           onChange={(e) => {
-            setPassword(e.target.value);
+            setEditPassword(e.target.value);
           }}
         />
 
@@ -57,12 +75,11 @@ const NewGroup = ({ visible }) => {
           <select
             required={true}
             color="primary"
-            value={grade}
+            value={editGrade}
             onChange={(e) => {
-              setGrade(e.target.value);
+              setEditGrade(e.target.value);
             }}
           >
-            <option value=""></option>
             <option value="user">Utilisateur</option>
             <option value="admin">Administrateur</option>
           </select>
@@ -71,12 +88,28 @@ const NewGroup = ({ visible }) => {
 
         <div className="button-form">
           <Button color="success" type="submit" auto ghost>
-            Ajouter un groupe
+            Modifier le groupe
           </Button>
           <Button
             color="error"
             onClick={() => {
-              visible(false);
+              handleDelete();
+            }}
+            auto
+            ghost
+          >
+            Supprimer
+          </Button>
+          <Button
+            color="secondary"
+            onClick={() => {
+              visible({
+                id: "",
+                name: "",
+                password: "",
+                grade: "",
+                state: false,
+              });
             }}
             auto
             ghost
@@ -89,4 +122,4 @@ const NewGroup = ({ visible }) => {
   );
 };
 
-export default NewGroup;
+export default EditGroup;

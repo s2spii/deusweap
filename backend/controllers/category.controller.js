@@ -16,6 +16,24 @@ module.exports.setCategory = async (req, res) => {
   res.status(200).json(category);
 };
 
+module.exports.editCategory = async (req, res) => {
+  const category = await CategoryModel.findById(req.params.id);
+
+  if (!category) {
+    res.status(400).json({ message: "Ce groupe n'existe pas" });
+  }
+
+  const updateCategory = await CategoryModel.findByIdAndUpdate(
+    category,
+    req.body,
+    {
+      new: true,
+    }
+  );
+
+  res.status(200).json(updateCategory);
+};
+
 module.exports.deleteCategory = async (req, res) => {
   const category = await CategoryModel.findById(req.params.id);
 

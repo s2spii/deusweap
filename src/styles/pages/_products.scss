@@ -1,11 +1,17 @@
 .products {
   display: flex;
+  justify-content: space-evenly;
+  overflow-x: hidden;
 
   .content {
-    flex: 1;
+    flex: 6;
     margin: 1em 30px;
     background-color: $purple;
     border-radius: 10px;
+    // display: none;
+    transition: 0.3s;
+    overflow-y: scroll;
+    height: 80vh;
   }
 }
 
@@ -15,10 +21,12 @@
   justify-content: space-evenly;
   align-items: center;
   color: $white-2;
+  flex-direction: row;
 
   li {
     text-align: center;
     padding: 20px;
+    margin: 10px;
     border-radius: 10px;
     background-color: $dark-gray;
 
@@ -28,6 +36,7 @@
       background-color: $deep-purple;
       position: relative;
       min-height: 50px;
+      // height: 70px;
 
       svg {
         position: absolute;
@@ -37,6 +46,7 @@
       }
       img {
         object-fit: contain;
+        aspect-ratio: 16/9;
       }
     }
 
@@ -58,17 +68,27 @@
       position: relative;
       width: calc(100% - 20px);
       margin: auto;
-      padding: 10px 5px;
+      padding: 10px 5px 5px 5px;
       background-color: $deep-purple;
       color: $white-2;
-      border: none;
+
       border-radius: 5px;
       transition: 0.3s;
       cursor: pointer;
+      box-sizing: border-box;
 
       &:hover {
         transform: scale(1.1);
+        border-bottom: 5px solid $white;
       }
+      &:active {
+        transition: none;
+        border-bottom: 5px solid green;
+      }
+
+      border-style: solid;
+      border-width: 0px 0px 5px 0px;
+      border-color: transparent;
     }
   }
 }

@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get("/get", getProducts);
 router.post("/add", setProducts);
-router.post("/edit/:id", editProduct);
+router.put("/edit/:id", editProduct);
 router.delete("/delete/:id", deleteProduct);
 
 module.exports = router;

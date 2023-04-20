@@ -1,0 +1,35 @@
+.login-container {
+  display: grid;
+  place-items: center;
+  height: 100%;
+
+  .login {
+    background-color: $deep-purple;
+    height: 300px;
+    aspect-ratio: 16/12;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+
+    h1 {
+      font-family: $font-1;
+      margin: 0;
+    }
+
+    form {
+      label {
+        font-family: $font-1;
+        color: black;
+      }
+      Button {
+        width: 80%;
+        text-align: center;
+        margin: auto;
+      }
+
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}

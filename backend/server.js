@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/product", require("./routes/product.routes"));
 app.use("/categories", require("./routes/category.routes"));
+app.use("/users", require("./routes/user.routes"));
 
 // Lancer le serveur
 app.listen(port, () => console.log("Le serveur a démarré au port  " + port));

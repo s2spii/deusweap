@@ -1,10 +1,13 @@
-import React, { useContext, useState } from "react";
-import { CartContext } from "./CartContext";
+import React, { useEffect, useState } from "react";
 import { Oval } from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions/cart.action";
 
 const ProductContent = ({ product }) => {
   const [loading, setLoading] = useState(true);
-  const { addToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
+
+  const formattedSellPrice = product.sell_price.toLocaleString("fr-FR");
 
   const handleAddToCart = () => {
     const newItem = {
@@ -12,8 +15,10 @@ const ProductContent = ({ product }) => {
       price: product.sell_price,
       buy_price: product.buy_price,
       img_path: product.img_path,
+      id: product._id,
     };
-    addToCart(newItem);
+
+    dispatch(addToCart(newItem));
   };
 
   const handleDisplay = () => {
@@ -37,10 +42,24 @@ const ProductContent = ({ product }) => {
             strokeWidthSecondary={2}
           />
         )}
-        <img src={product.img_path} onLoad={handleDisplay} width={200} alt="" />
+        {product.img_path ? (
+          <img
+            src={product.img_path}
+            onLoad={handleDisplay}
+            width={200}
+            alt=""
+          />
+        ) : (
+          <img
+            src="./assets/weapon.png"
+            onLoad={handleDisplay}
+            width={200}
+            alt=""
+          />
+        )}
       </div>
       <h3>{product.name}</h3>
-      <h4>{product.sell_price.toLocaleString() + "$"}</h4>
+      <h4>{formattedSellPrice + "$"}</h4>
       <button onClick={handleAddToCart}>Ajouter au panier</button>
     </li>
   );
