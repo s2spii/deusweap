@@ -4,7 +4,9 @@ const connectDB = async () => {
   try {
     mongoose.set("strictQuery", false);
     mongoose
-      .connect(process.env.MONGO_URI)
+      .connect(
+        "mongodb+srv://s2spii:rayaneBG35@app-js-fullstack.emuqsml.mongodb.net/deusweap"
+      )
       .then(() => console.log("Mongo Connected"));
   } catch (err) {
     console.log(err);
