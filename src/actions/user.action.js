@@ -6,7 +6,7 @@ export const LOGGED_USER = "LOGGED_USER";
 
 export const getUsers = () => {
   return (dispatch) => {
-    axios.get("http://localhost:5000/users/get").then((res) =>
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/get`).then((res) =>
       dispatch({
         type: GET_USERS,
         payload: res.data,
@@ -19,7 +19,7 @@ export const getLoggedUser = () => {
   return (dispatch) => {
     const token = Cookies.get("jwt");
 
-    axios.get("http://localhost:5000/users/get").then((res) => {
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/get`).then((res) => {
       const users = res.data;
 
       for (let i = 0; i < users.length; i++) {

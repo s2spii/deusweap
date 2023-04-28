@@ -15,30 +15,37 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 
 export const getCategories = () => {
   return (dispatch) => {
-    axios.get("http://localhost:5000/categories/get").then((res) => {
-      dispatch({
-        type: GET_CATEGORIES,
-        payload: res.data,
+    axios
+      .get(`${process.env.REACT_APP_API_BASE_URL}/categories/get`)
+      .then((res) => {
+        dispatch({
+          type: GET_CATEGORIES,
+          payload: res.data,
+        });
       });
-    });
   };
 };
 
 export const addCategory = (category) => {
   return (dispatch) => {
-    axios.post("http://localhost:5000/categories/add", category).then((res) => {
-      dispatch({
-        type: ADD_CATEGORY,
-        payload: res.data,
+    axios
+      .post(`${process.env.REACT_APP_API_BASE_URL}/categories/add`, category)
+      .then((res) => {
+        dispatch({
+          type: ADD_CATEGORY,
+          payload: res.data,
+        });
       });
-    });
   };
 };
 
 export const editCategory = (category, categoryId) => {
   return (dispatch) => {
     axios
-      .put(`http://localhost:5000/categories/edit/${categoryId}`, category)
+      .put(
+        `${process.env.REACT_APP_API_BASE_URL}/categories/edit/${categoryId}`,
+        category
+      )
       .then((res) =>
         dispatch({
           type: EDIT_CATEGORY,
@@ -59,7 +66,9 @@ export const deleteCategory = (categoryName, categoryId) => {
     }
 
     axios
-      .delete(`http://localhost:5000/categories/delete/${categoryId}`)
+      .delete(
+        `${process.env.REACT_APP_API_BASE_URL}/categories/delete/${categoryId}`
+      )
       .then((res) =>
         dispatch({
           type: DELETE_CATEGORY,

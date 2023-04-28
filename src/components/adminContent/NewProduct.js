@@ -15,25 +15,12 @@ const NewProduct = ({ visible }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/categories/get")
+      .get(`${process.env.REACT_APP_API_BASE_URL}/categories/get`)
       .then((res) => setListCategories(res.data));
   }, []);
 
   const handleFormProduct = (event) => {
     event.preventDefault();
-
-    // axios
-    //   .post("http://localhost:5000/product/add", {
-    //     name,
-    //     buy_price: buyPrice,
-    //     sell_price: sellPrice,
-    //     img_path: img,
-    //     categories: categories,
-    //   })
-    //   .then(() => {
-    //     visible(false);
-    //     alert("Produit ajouté avec succès");
-    //   });
 
     dispatch(
       addProduct({
