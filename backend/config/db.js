@@ -1,17 +1,8 @@
-const mongoose = require("mongoose");
+const { Sequelize } = require("sequelize");
 
-const connectDB = async () => {
-  try {
-    mongoose.set("strictQuery", false);
-    mongoose
-      .connect(
-        "mongodb+srv://s2spii:rayaneBG35@app-js-fullstack.emuqsml.mongodb.net/deusweap"
-      )
-      .then(() => console.log("Mongo Connected"));
-  } catch (err) {
-    console.log(err);
-    process.exit();
-  }
-};
+const sequelize = new Sequelize("deusweap", "root", "", {
+  host: "localhost",
+  dialect: "mysql",
+});
 
-module.exports = connectDB;
+module.exports = sequelize;

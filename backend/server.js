@@ -2,9 +2,8 @@ const express = require("express");
 const connectDB = require("./config/db");
 const cors = require("cors");
 const path = require("path");
+const sequelize = require("./config/db");
 const port = 5000;
-// connexion à la DB
-connectDB();
 
 const app = express();
 
@@ -24,5 +23,18 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../build", "index.html"));
 });
 
+sequelize
+  .sync()
+  .then(() => {
+    app.listen(port, () =>
+      console.log("Le serveur a démarré au port  " + port)
+    );
+  })
+  .catch((error) => {
+    console.error(
+      "Erreur lors de la synchronisation de la base de données",
+      error
+    );
+  });
+
 // Lancer le serveur
-app.listen(port, () => console.log("Le serveur a démarré au port  " + port));

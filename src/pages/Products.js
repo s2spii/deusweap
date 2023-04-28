@@ -75,7 +75,7 @@ const Products = () => {
                           if (selectedContent === category.name) {
                             return (
                               <ProductContent
-                                key={product._id}
+                                key={product.id}
                                 product={product}
                               />
                             );

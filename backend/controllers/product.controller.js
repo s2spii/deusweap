@@ -1,7 +1,7 @@
-const ProductModel = require("../models/products.model");
+const Product = require("../models/product.model");
 
 module.exports.getProducts = async (req, res) => {
-  const products = await ProductModel.find();
+  const products = await Product.findAll();
   res.status(200).json(products);
 };
 
@@ -16,7 +16,7 @@ module.exports.setProducts = async (req, res) => {
     res.status(400).json({ message: "Veuillez indiquer un prix de vente" });
   }
 
-  const product = await ProductModel.create({
+  const product = await Product.create({
     categories: req.body.categories,
     name: req.body.name,
     buy_price: req.body.buy_price,
@@ -27,30 +27,24 @@ module.exports.setProducts = async (req, res) => {
 };
 
 module.exports.editProduct = async (req, res) => {
-  const product = await ProductModel.findById(req.params.id);
-
-  if (!product) {
-    res.status(400).json({ message: "Ce product n'existe pas" });
-  }
-
-  const updateProduct = await ProductModel.findByIdAndUpdate(
-    product,
-    req.body,
-    {
-      new: true,
-    }
-  );
-
-  res.status(200).json(updateProduct);
-};
-
-module.exports.deleteProduct = async (req, res) => {
-  const product = await ProductModel.findById(req.params.id);
+  const product = await Product.findByPk(req.params.id);
 
   if (!product) {
     res.status(400).json({ message: "Ce produit n'existe pas" });
   }
 
-  await product.deleteOne();
+  const updateProduct = await product.update(req.body);
+  res.status(200).json(updateProduct);
+};
+
+module.exports.deleteProduct = async (req, res) => {
+  const product = await Product.findByPk(req.params.id);
+
+  if (!product) {
+    res.status(400).json({ message: "Ce produit n'existe pas" });
+    return;
+  }
+
+  await product.destroy();
   res.status(200).json(`Le message n°${req.params.id} a bien été supprimé !`);
 };

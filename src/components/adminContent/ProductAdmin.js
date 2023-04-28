@@ -16,7 +16,7 @@ const ProductAdmin = ({ data }) => {
       name,
       buy_price: buyPrice,
       sell_price: sellPrice,
-      _id: id,
+      id: id,
       img_path: url_path,
       categories: data.categories,
     };
@@ -64,7 +64,7 @@ const ProductAdmin = ({ data }) => {
             style={{ marginRight: "10px" }}
             onClick={() => {
               setEdit(false);
-              handleEdit(data._id);
+              handleEdit(data.id);
             }}
           ></i>
 
@@ -93,7 +93,7 @@ const ProductAdmin = ({ data }) => {
           <i
             className="fa-solid fa-trash hover"
             style={{ marginLeft: "10px" }}
-            onClick={() => dispatch(deleteProduct(data._id))}
+            onClick={() => dispatch(deleteProduct(data.id))}
           ></i>
         </li>
       </div>

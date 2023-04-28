@@ -21,7 +21,7 @@ export const getProducts = () => {
 export const editProduct = (product) => {
   return (dispatch) => {
     axios.put(
-      `${process.env.REACT_APP_API_BASE_URL}/product/edit/${product._id}`,
+      `${process.env.REACT_APP_API_BASE_URL}/product/edit/${product.id}`,
       product
     );
     dispatch({

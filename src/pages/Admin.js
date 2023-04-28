@@ -119,7 +119,7 @@ function Admin() {
             {!isEmpty(categories) &&
               categories.map((category) => (
                 <li
-                  key={category._id}
+                  key={category.id}
                   className={
                     selectedContent === category.name ? "active-side" : ""
                   }
@@ -142,13 +142,13 @@ function Admin() {
             {!isEmpty(groups) &&
               groups.map((group) => (
                 <li
-                  key={group._id}
+                  key={group.id}
                   className={
                     selectedContent === group.name ? "active-side" : ""
                   }
                   onClick={() => {
                     setVisibleEditGroup({
-                      id: group._id,
+                      id: group.id,
                       name: group.name,
                       password: group.pass,
                       grade: group.grade,
@@ -173,13 +173,13 @@ function Admin() {
             {!isEmpty(categories) &&
               categories.map((category) => (
                 <li
-                  key={category._id}
+                  key={category.id}
                   className={
                     selectedContent === category.name ? "active-side" : ""
                   }
                   onClick={() => {
                     setVisibleEditCategory({
-                      id: category._id,
+                      id: category.id,
                       name: category.name,
                       state: true,
                     });
@@ -219,7 +219,7 @@ function Admin() {
             categories.map((category) => {
               if (selectedContent === category.name) {
                 return (
-                  <ul className="admin-table" key={category._id}>
+                  <ul className="admin-table" key={category.id}>
                     <div className="header-table">
                       <li id="admin-name">Nom</li>
                       <li id="admin-buy-price">Prix d'achat</li>

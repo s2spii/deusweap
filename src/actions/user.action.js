@@ -29,7 +29,7 @@ export const getLoggedUser = () => {
           const infos = {
             name: user.name,
             pass: user.pass,
-            id: user._id,
+            id: user.id,
           };
 
           dispatch({

@@ -61,7 +61,7 @@ export const deleteCategory = (categoryName, categoryId) => {
 
     if (!isEmpty(products)) {
       products.forEach((product) => {
-        dispatch(deleteProduct(product._id));
+        dispatch(deleteProduct(product.id));
       });
     }
 

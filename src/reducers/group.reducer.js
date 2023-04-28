@@ -16,12 +16,12 @@ export default function groupReducer(state = initialState, action) {
     case EDIT_GROUP:
       const editGroup = action.payload;
       return state.map((group) => {
-        if (group._id === action.payload._id) {
+        if (group.id === action.payload.id) {
           return editGroup;
         } else return group;
       });
     case DELETE_GROUP:
-      return state.filter((group) => group._id !== action.payload);
+      return state.filter((group) => group.id !== action.payload);
 
     default:
       return state;

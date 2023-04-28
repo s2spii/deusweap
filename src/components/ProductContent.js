@@ -15,7 +15,7 @@ const ProductContent = ({ product }) => {
       price: product.sell_price,
       buy_price: product.buy_price,
       img_path: product.img_path,
-      id: product._id,
+      id: product.id,
     };
 
     dispatch(addToCart(newItem));
